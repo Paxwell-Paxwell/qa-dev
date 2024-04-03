@@ -24,17 +24,3 @@
   flex-direction: column;
   padding: 2rem;
 }
-
-.submit-button{
-  margin-top: 1rem;
-  background: $green-600;
-  color: $white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background 0.3s;
-  &:hover{
-    background: darken($green-600, 10%);
-  }
-}

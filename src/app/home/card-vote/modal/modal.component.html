@@ -1,24 +1,50 @@
-<div class="modal-background" >
-    <div class="card-modal" >
-      <div style="font-size: large">
-        Submit Vote
-      </div>
-      <div style="display: flex; padding-left: 0.5rem; padding-top: 1rem; padding-bottom: 1rem; align-items: center">
-        <span>Vote Topic1</span>
-        <div style="flex-grow: 1"></div>
-        <i style="cursor: pointer;font-size: 20px"   class="bi bi-card-text"></i>
-      </div>
-      <div style="overflow-y: scroll;height: 30%;">
-        <div style="display: flex ;  " *ngFor="let item of Options.options; let i = index ">
-           <span style="padding-left: 2rem" >{{item.option}}</span>
-            <div style="flex-grow: 1"></div>
-            <div class="form-check form-switch" >
-              <input class="form-check-input" [checked]="optionSelected[i]" type="checkbox" role="switch" id="flexSwitchCheckChecked" (change)="checkOption($event,i)">
-            </div>
-        </div>
-
-
-      </div>
-
+<div class="modal-background">
+  <div class="card-modal" *ngIf="!showDescription else showDes">
+    <div style="font-size: large">
+      Submit Vote
     </div>
+    <div style="display: flex; padding-left: 0.5rem; padding-top: 1rem; padding-bottom: 1rem; align-items: center">
+      <span>{{cardVote.topic}}</span>
+      <div style="flex-grow: 1"></div>
+      <i style="cursor: pointer;font-size: 20px" class="bi bi-card-text" (click)="showDescriptionToggle()"></i>
+    </div>
+    <form  (ngSubmit)="submitForm($event) " style="height: 100%; display: flex; flex-direction: column;">
+      <div style="flex-grow: 1; overflow-y:auto ;">
+        <div style="display: flex ;  " *ngFor="let item of cardVote.options; let i = index ">
+          <span style="padding-left: 2rem">{{item.option}}</span>
+          <div style="flex-grow: 1"></div>
+          <div class="form-check form-switch">
+            <input #option class="form-check-input" [checked]="optionSelected[i]" type="checkbox" role="switch"
+              id="flexSwitchCheckChecked" (change)="checkOption($event,i)">
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex;">
+        <div style="flex-grow: 1;"></div>
+        <button class="submit-button" type="submit">submit</button>
+      </div>
+    </form>
+
+  </div>
+  <ng-template #showDes>
+    <div class="card-modal">
+      <div style="display: flex;">
+        <div style="font-size: large">
+          {{cardVote.topic}}
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div>
+          <i style="cursor: pointer;font-size: 20px" class="bi bi-x-lg" (click)="showDescriptionToggle()"></i>
+        </div>
+      </div>
+      <div style="height: 80%; overflow-y:auto ; padding: 1rem; margin-top: 1rem;">
+        {{
+        cardVote.description
+        }}
+      </div>
+    </div>
+  </ng-template>
+
+
 </div>

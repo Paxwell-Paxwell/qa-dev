@@ -1,1 +1,38 @@
-<p>create-vote works!</p>
+<form class="create-vote" (ngSubmit)="submitCreateVote($event)">
+
+    <div style="font-size: 1rem;  ">
+        <div style="display: flex; align-items: center; padding:1rem 0 ;">
+            <span>Topic</span>
+            <div style="flex-grow: 1;"></div>
+            <span>{{cardVoteModel.topic.length}}/100</span>
+        </div>
+        <textarea class="textarea-topic" maxlength="100" autocomplete="off" [(ngModel)]="cardVoteModel.topic"
+            appTextareaAutoresize></textarea>
+    </div>
+    <div style="font-size: 1rem; ">
+        <div style="display: flex; align-items: center; padding:1rem 0 ;">
+            <span>Description</span>
+            <div style="flex-grow: 1;"></div>
+            <span>{{cardVoteModel.topic.length}}/1000</span>
+        </div>
+        <textarea class="textarea-description" maxlength="1000" autocomplete="off"
+            [(ngModel)]="cardVoteModel.description" appTextareaAutoresize></textarea>
+    </div>
+    <div style="font-size: 1rem; ">
+        <div style="display: flex; align-items: center; padding:1rem 0 ;">
+            <span>Option</span>
+            <div style="flex-grow: 1;"></div>
+        </div>
+        <div style="display: flex; width: 100%; align-items: center; margin-bottom: 1rem;"  *ngFor="let option of cardVoteModel.options; let i = index ">
+            <input type="text" style="flex-grow: 1; margin: 0; margin-right: 0.5rem;  " class="input-option" maxlength="50" [(ngModel)]="option.option">
+            <i class="bi bi-trash bin" (click)="deleteOption(i)" ></i>
+        </div>
+        
+        <i class="bi bi-plus-circle" style="cursor: pointer; font-size: 2rem;"  (click)="addOption()"></i>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+         <button class="submit-button" type="submit">Create</button>
+    </div>
+
+   
+</form>

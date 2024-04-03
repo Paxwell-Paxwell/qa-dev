@@ -1,0 +1,54 @@
+<div class="modal-background">
+  <div class="card-modal" *ngIf="!showDescription else showDes">
+    <div style="display: flex;">
+      <div style="font-size: large">
+        Report
+      </div>
+      <div style="flex-grow: 1;"></div>
+      <div>
+        <i style="cursor: pointer;font-size: 20px" class="bi bi-x-lg" (click)="closeReportModal()"></i>
+      </div>
+    </div>
+    <div style="display: flex; padding-left: 0.5rem; padding-top: 1rem; padding-bottom: 1rem; align-items: center">
+      <span>{{cardVote.topic}}</span>
+      <div style="flex-grow: 1"></div>
+      <i style="cursor: pointer;font-size: 20px" class="bi bi-card-text" (click)="showDescriptionToggle()"></i>
+    </div>
+    <div style="display: flex; padding-left: 0.5rem; padding-top: 1rem; padding-bottom: 1rem; align-items: center">
+      <span># Voter: {{calculateTotalVotes()}}</span>
+    </div>
+    <div style="overflow-y:auto ; height: 100%; display: flex; flex-direction: column;">
+      <div style="display: flex ;  " *ngFor="let item of cardVote.options; let i = index ">
+        <span style="padding-left: 2rem">{{item.option}}</span>
+        <div style="flex-grow: 1"></div>
+        <div class="progress" style="width: 40%;">
+          <div class="progress-bar" role="progressbar"  [style.width]="calculatePercentage(item.votes) + '%'" 
+          [attr.aria-valuenow]="calculatePercentage(item.votes)"   aria-valuemin="0" aria-valuemax="100">{{item.votes !== 0?item.votes:""}}</div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <ng-template #showDes>
+    <div class="card-modal">
+      <div style="display: flex;">
+        <div style="font-size: large">
+          {{cardVote.topic}}
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div>
+          <i style="cursor: pointer;font-size: 20px" class="bi bi-x-lg" (click)="showDescriptionToggle()"></i>
+        </div>
+      </div>
+      <div style="height: 80%; overflow-y:auto ; padding: 1rem; margin-top: 1rem;">
+        {{
+        cardVote.description
+        }}
+      </div>
+    </div>
+  </ng-template>
+
+
+</div>

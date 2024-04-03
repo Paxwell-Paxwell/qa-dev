@@ -4,7 +4,8 @@
   </div>
   <div style="width:40%; display: flex; gap:1rem; "  >
     <button type="button" class="btn  button-vote"  (click)="clickedVote()">Vote</button>
-    <button type="button" class="btn button-report">Report</button>
+    <button type="button" class="btn button-report" (click)="clickedReport()">Report</button>
   </div>
   <app-modal *ngIf="showVoteModal" (close)="closeVoteModal()"></app-modal>
+  <app-modal-report *ngIf="showReportModal" (close)="closeReportModal()"></app-modal-report>
 </div>

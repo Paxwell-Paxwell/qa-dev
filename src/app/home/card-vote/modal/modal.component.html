@@ -1,0 +1,24 @@
+<div class="modal-background" >
+    <div class="card-modal" >
+      <div style="font-size: large">
+        Submit Vote
+      </div>
+      <div style="display: flex; padding-left: 0.5rem; padding-top: 1rem; padding-bottom: 1rem; align-items: center">
+        <span>Vote Topic1</span>
+        <div style="flex-grow: 1"></div>
+        <i style="cursor: pointer;font-size: 20px"   class="bi bi-card-text"></i>
+      </div>
+      <div style="overflow-y: scroll;height: 30%;">
+        <div style="display: flex ;  " *ngFor="let item of Options.options; let i = index ">
+           <span style="padding-left: 2rem" >{{item.option}}</span>
+            <div style="flex-grow: 1"></div>
+            <div class="form-check form-switch" >
+              <input class="form-check-input" [checked]="optionSelected[i]" type="checkbox" role="switch" id="flexSwitchCheckChecked" (change)="checkOption($event,i)">
+            </div>
+        </div>
+
+
+      </div>
+
+    </div>
+</div>

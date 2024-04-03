@@ -1,0 +1,10 @@
+nav{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding:2rem 0rem;
+  :first-child{
+    margin-right:1rem
+  }
+  font-size: larger;
+}

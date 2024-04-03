@@ -1,0 +1,10 @@
+<div class="card-vote" >
+  <div class="text-truncate" style="width:60%; padding-left: 1rem" >
+   {{title}}
+  </div>
+  <div style="width:40%; display: flex; gap:1rem; "  >
+    <button type="button" class="btn  button-vote"  (click)="clickedVote()">Vote</button>
+    <button type="button" class="btn button-report">Report</button>
+  </div>
+  <app-modal *ngIf="showVoteModal" (close)="closeVoteModal()"></app-modal>
+</div>

@@ -11,7 +11,7 @@ import { ModalComponent } from './home/card-vote/modal/modal.component';
 import { ModalReportComponent } from './home/card-vote/modal-report/modal-report.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TextareaAutoresizeDirective } from './shared/core/textarea-autoresize.directive';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,13 +24,12 @@ import { TextareaAutoresizeDirective } from './shared/core/textarea-autoresize.d
     ModalReportComponent,
     CreateVoteComponent,
     TextareaAutoresizeDirective
-
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [
     provideAnimationsAsync()

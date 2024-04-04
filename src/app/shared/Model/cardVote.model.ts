@@ -3,7 +3,15 @@ export interface Options{
   votes: number;
 
 }
+
+export interface ICardVoteModel {
+  id:string;
+  topic: string;
+  description: string;
+  options: Options[];
+}
 export class CardVoteModel {
+
   topic: string;
   description: string;
   options: Options[];
@@ -11,5 +19,8 @@ export class CardVoteModel {
     this.topic = topic;
     this.description = description;
     this.options = options;
+
   }
 }
+
+

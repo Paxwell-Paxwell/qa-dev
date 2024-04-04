@@ -9,17 +9,43 @@ import {VoteService} from "../api/vote.service";
 })
 export class HomeComponent implements OnInit{
   cardVotes :ICardVoteModel[] = [];
+  private _page: number = 1;
+  showPrevButton: boolean = false;
+  showNextButton: boolean = true;
   constructor(private voteService: VoteService) {
   }
   ngOnInit() {
-    this.loadVotePaganation(1, 10);
-    console.log();
+    this.loadVotePagination(1, 5);
   }
 
-  loadVotePaganation(page: number, limit: number){
+  get page(): number {
+    return this._page;
+  }
+
+  set page(value: number) {
+    this._page = value;
+    this.loadVotePagination(this._page, 5);
+    // Perform any additional actions here, similar to what you'd do in useEffect
+  }
+  loadVotePagination(page: number, limit: number){
     this.voteService.getVotesPaganation(page, limit).subscribe((data) => {
       this.cardVotes = data
+      // console.log(data);
+      this.updatePaginationButtons();
     });
   }
-  
+  nextPage(){
+    this.page++;
+
+    
+  }
+  prevPage(){
+    this.page--;
+    
+  }
+  private updatePaginationButtons() {
+
+    this.showPrevButton = this.page > 1;
+    this.showNextButton = this.cardVotes.length === 5;
+  }
 }

@@ -23,8 +23,8 @@
             <span>Option</span>
             <div style="flex-grow: 1;"></div>
         </div>
-        <div style="display: flex; width: 100%; align-items: center; margin-bottom: 1rem;"  *ngFor="let option of cardVoteModel.options; let i = index ">
-            <input name="option" type="text" style="flex-grow: 1; margin: 0; margin-right: 0.5rem;  " class="input-option" maxlength="50" [(ngModel)]="option.option">
+        <div style="display: flex; width: 100%; align-items: center; margin-bottom: 1rem;"  *ngFor="let option of cardVoteModel.options; let i = index;trackBy: trackByFn " >
+            <input  type="text"  style="flex-grow: 1; margin: 0; margin-right: 0.5rem;  " class="input-option" maxlength="50" [(ngModel)]="cardVoteModel.options[i].option" [name]="'option'+i" >
             <i class="bi bi-trash bin" (click)="deleteOption(i)" ></i>
         </div>
         
@@ -33,6 +33,4 @@
     <div style="display: flex; align-items: center; justify-content: center;">
          <button class="submit-button" type="submit">Create</button>
     </div>
-
-   
 </form>

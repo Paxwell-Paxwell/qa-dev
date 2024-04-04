@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ICardVoteModel, IOptions } from '../../shared/Model/cardVote.model';
 
 @Component({
   selector: 'app-card-vote',
@@ -6,8 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card-vote.component.scss'
 })
 export class CardVoteComponent {
-  @Input() title: string = '';
-  @Input() description: string = '';
+
+  @Input() cardVote!: ICardVoteModel
   showVoteModal: boolean = false;
   showReportModal: boolean = false;
   clickedVote(){

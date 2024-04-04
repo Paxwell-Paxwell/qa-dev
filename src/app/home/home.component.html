@@ -1,7 +1,12 @@
-<div class="container-fluid">
-  <div style="height: 2rem"></div>
-  <div style="display: flex; flex-direction: column; gap:1rem; align-items: center  ">
-    <app-card-vote style="width: 60%" title="Angular"></app-card-vote>
-
+<div class="container-fluid" style="height: 100%;">
+  <div style="display: flex; flex-direction: column; gap:1rem; align-items: center; height: 100%;  ">
+    <div style="flex-grow: 1;"></div>
+    <app-card-vote  style="width: 60%" *ngFor="let cardVote of cardVotes; let i = index ; " [cardVote]="cardVote"></app-card-vote>
+    <div style="display: flex; ">
+      <button class="button-arrow" [hidden]="!showPrevButton" (click)="prevPage()" type="button"><i class="bi bi-arrow-left"></i></button>
+      <div class="show-page"><span>{{page}}</span></div>
+      <button class="button-arrow" [hidden]="!showNextButton"  (click)="nextPage()" type="button"><i class="bi bi-arrow-right"></i></button>
+    </div>
+    <div style="flex-grow: 1;"></div>
   </div>
 </div>

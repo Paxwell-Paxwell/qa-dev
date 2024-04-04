@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit, ViewChildren, QueryList,ElementRef ,AfterViewInit} from '@angular/core';
-import { CardVoteModel } from "../../../shared/Model/cardVote.model";
-
+import { CardVoteModel, ICardVoteModel } from "../../../shared/Model/cardVote.model";
+import { VoteService } from "../../../api/vote.service";
+import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -8,27 +9,15 @@ import { CardVoteModel } from "../../../shared/Model/cardVote.model";
 })
 export class ModalComponent implements OnInit{
   @Output() close = new EventEmitter<void>();
-  @Input() cardVote: CardVoteModel = new CardVoteModel('Topic 1', `Error Handling: Always include error handling 
-  when working with asynchronous operations to manage exceptions gracefully.
-  Subscription Management: In real-world applications, manage subscriptions
-   to prevent memory leaks. This could involve unsubscribing from observables
-    when the component is destroyed (e.g., using Subscription objects and the
-       ngOnDestroy lifecycle hook).
-  Dynamic Data: Since optionSelected now depends on asynchronous data, ensure 
-  that any operation relying on optionSelected or Options accounts for the possibility that the data may not be immediately available.
-  Loading State: Consider implementing a loading state in your component to enhance 
-  user experience. This could involve displaying a spinner or a message while data is being fetched.
-  This approach ensures that your ModalComponent works seamlessly with dynamic, 
-  asynchronous data fetched from an API, allowing it to display voting options that are retrieved at runtime. 
-  `, [{ option: 'Option 1', votes: 0 }, { option: 'Option 2', votes: 0 }, {
-    option: 'Option 3', votes: 0
-  }, { option: 'Option 4', votes: 0 }]);
+  @Input() cardVote!: ICardVoteModel
   showDescription: boolean = false;
   optionSelected: boolean[] = [];
   // @ViewChildren('option') optionElements!: QueryList<ElementRef<HTMLInputElement>>; // Add '!' to indicate that it will be initialized later.
   // ngAfterViewInit() {
   //   this.optionElements.forEach(input => console.log(input.nativeElement.checked)); // Accesses each element in the collection.
   // }
+  constructor(private voteService: VoteService) {
+  }
   ngOnInit() {
     this.optionSelected = this.cardVote.options.map(() => false);
   }
@@ -49,14 +38,37 @@ export class ModalComponent implements OnInit{
   showDescriptionToggle() {
     this.showDescription = !this.showDescription;
   }
-  submitForm(event: Event) {
+  async submitForm(event: Event) {
     event.preventDefault(); // Prevent the default form submission behavior
     if(this.optionSelected.includes(true)){
-      console.log('submitForm', this.optionSelected);
+      const optionIndex = this.optionSelected.indexOf(true);
+      try {
+          await this.updateVote(optionIndex);
+          // closeModal() is called after updateVote resolves
+          this.closeModal();
+      } catch (error) {
+          console.error("Failed to update vote", error);
+          // Handle any errors that occurred during the updateVote call
+      }
     }
-    this.closeModal();
-    // Rest of your method...
-  }
+    // Additional logic if needed...
+}
+  private async updateVote(optionIndex: number): Promise<void> {
+    const format = {
+      id: this.cardVote.id!,
+      optionIndex
+    };
+
+    try {
+        const data = await firstValueFrom(this.voteService.updateVote(format));
+        console.log('Vote updated successfully', data);
+        // No need to explicitly return a resolved promise; just allow the function to complete.
+    } catch (error) {
+        console.error('There was an error!', error);
+        // Re-throw the error if you want to handle it further up the call stack.
+        throw error;
+    }
+}
   closeModal() {
     this.close.emit();
   }

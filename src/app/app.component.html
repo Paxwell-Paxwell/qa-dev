@@ -1,7 +1,12 @@
 
 <main class="container">
-  <app-navbar></app-navbar>
-  <router-outlet />
+  <div style="display: flex; flex-direction: column; height: 100vh;">
+    <app-navbar></app-navbar>
+    <div style="flex-grow: 1; overflow-y: auto;">
+      <router-outlet  />
+    </div>
+    
+  </div>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

@@ -11,7 +11,7 @@
     <form  (ngSubmit)="submitForm($event) " style="height: 100%; display: flex; flex-direction: column;">
       <div style="flex-grow: 1; overflow-y:auto ;">
         <div style="display: flex ;  " *ngFor="let item of cardVote.options; let i = index ">
-          <span style="padding-left: 2rem">{{item.option}}</span>
+          <span style="padding-left: 2rem">{{item.optionText}}</span>
           <div style="flex-grow: 1"></div>
           <div class="form-check form-switch">
             <input #option class="form-check-input" [checked]="optionSelected[i]" type="checkbox" role="switch"

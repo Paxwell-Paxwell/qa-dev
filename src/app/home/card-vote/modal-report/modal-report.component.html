@@ -10,7 +10,7 @@
       </div>
     </div>
     <div style="display: flex; padding-left: 0.5rem; padding-top: 1rem; padding-bottom: 1rem; align-items: center">
-      <span>{{cardVote.topic}}</span>
+      <span>{{realTimeCardVote?.topic}}</span>
       <div style="flex-grow: 1"></div>
       <i style="cursor: pointer;font-size: 20px" class="bi bi-card-text" (click)="showDescriptionToggle()"></i>
     </div>
@@ -18,7 +18,7 @@
       <span># Voter: {{calculateTotalVotes()}}</span>
     </div>
     <div style="overflow-y:auto ; height: 100%; display: flex; flex-direction: column; flex-grow: 1;">
-      <div style="display: flex ;  margin-bottom: 0.5rem; " *ngFor="let item of cardVote.options; let i = index ">
+      <div style="display: flex ;  margin-bottom: 0.5rem; " *ngFor="let item of realTimeCardVote?.options; let i = index ">
         <span style="padding-left: 2rem">{{item.optionText}}</span>
         <div style="flex-grow: 1"></div>
         <div class="progress" style="width: 40%;">
@@ -35,7 +35,7 @@
     <div class="card-modal">
       <div style="display: flex;">
         <div style="font-size: large">
-          {{cardVote.topic}}
+          {{realTimeCardVote?.topic}}
         </div>
         <div style="flex-grow: 1;"></div>
         <div>
@@ -44,7 +44,7 @@
       </div>
       <div style="height: 80%; overflow-y:auto ; padding: 1rem; margin-top: 1rem;">
         {{
-        cardVote.description
+        realTimeCardVote?.description
         }}
       </div>
     </div>

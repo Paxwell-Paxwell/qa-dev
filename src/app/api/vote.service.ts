@@ -33,7 +33,7 @@ export class VoteService {
     optionIndex: number;
   }
     ): Observable<string> {
-      console.log(data);
+      // console.log(data);
       
     return this.http.put<string>(`${this.apiUrl}/vote/updateVote`,data,{responseType: 'text' as 'json'});
   }

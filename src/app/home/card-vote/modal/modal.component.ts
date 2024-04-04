@@ -51,6 +51,7 @@ export class ModalComponent implements OnInit{
           // Handle any errors that occurred during the updateVote call
       }
     }
+    this.closeModal();
     // Additional logic if needed...
 }
   private async updateVote(optionIndex: number): Promise<void> {

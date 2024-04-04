@@ -1,3 +1,4 @@
+
 nav{
   display: flex;
   justify-content: start;
@@ -7,4 +8,13 @@ nav{
     margin-right:1rem
   }
   font-size: larger;
+}
+@import "../shared/color.scss";
+.currentPath{
+
+  color: $neutral-700;
+
+}
+.otherPath{
+  color: $neutral-500;
 }

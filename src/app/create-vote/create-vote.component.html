@@ -6,16 +6,16 @@
             <div style="flex-grow: 1;"></div>
             <span>{{cardVoteModel.topic.length}}/100</span>
         </div>
-        <textarea class="textarea-topic" maxlength="100" autocomplete="off" [(ngModel)]="cardVoteModel.topic"
+        <textarea name="topic" class="textarea-topic" maxlength="100" autocomplete="off" [(ngModel)]="cardVoteModel.topic"
             appTextareaAutoresize></textarea>
     </div>
     <div style="font-size: 1rem; ">
         <div style="display: flex; align-items: center; padding:1rem 0 ;">
             <span>Description</span>
             <div style="flex-grow: 1;"></div>
-            <span>{{cardVoteModel.topic.length}}/1000</span>
+            <span>{{cardVoteModel.description.length}}/1000</span>
         </div>
-        <textarea class="textarea-description" maxlength="1000" autocomplete="off"
+        <textarea name="description" class="textarea-description" maxlength="1000" autocomplete="off"
             [(ngModel)]="cardVoteModel.description" appTextareaAutoresize></textarea>
     </div>
     <div style="font-size: 1rem; ">
@@ -24,7 +24,7 @@
             <div style="flex-grow: 1;"></div>
         </div>
         <div style="display: flex; width: 100%; align-items: center; margin-bottom: 1rem;"  *ngFor="let option of cardVoteModel.options; let i = index ">
-            <input type="text" style="flex-grow: 1; margin: 0; margin-right: 0.5rem;  " class="input-option" maxlength="50" [(ngModel)]="option.option">
+            <input name="option" type="text" style="flex-grow: 1; margin: 0; margin-right: 0.5rem;  " class="input-option" maxlength="50" [(ngModel)]="option.option">
             <i class="bi bi-trash bin" (click)="deleteOption(i)" ></i>
         </div>
         

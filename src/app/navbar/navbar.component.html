@@ -1,4 +1,4 @@
 <nav  class="navbar">
-  <a routerLink="/Home" class="nav-link">Home</a>
-  <a routerLink="/create-vote" class="nav-link">Create Vote</a>
+  <a routerLink="/Home" [ngClass]="{'currentPath':currentUrl==='/Home','otherPath':currentUrl!=='/Home'}" class="nav-link">Home</a>
+  <a routerLink="/create-vote" [ngClass]="{'currentPath':currentUrl==='/create-vote','otherPath':currentUrl!=='/create-vote'}" class="nav-link">Create Vote</a>
 </nav>
